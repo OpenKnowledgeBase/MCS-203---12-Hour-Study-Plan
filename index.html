@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MCS-203 Study Schedule</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3a7bd5;
+      --primary-light: #5a8fdf;
+      --secondary: #00d2ff;
+      --text: #2d3748;
+      --text-light: #4a5568;
+      --bg: #f7fafc;
+      --card-bg: #ffffff;
+      --break-color: #f0f4f8;
+      --success: #48bb78;
+      --warning: #ed8936;
+      --danger: #f56565;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #5a8fdf;
+        --primary-light: #7aa8f0;
+        --text: #e2e8f0;
+        --text-light: #cbd5e0;
+        --bg: #1a202c;
+        --card-bg: #2d3748;
+        --break-color: #4a5568;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-light);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .session {
+      background-color: var(--card-bg);
+      margin-bottom: 1.25rem;
+      padding: 1.25rem;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .session:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .session.break {
+      border-left-color: var(--break-color);
+      background-color: var(--break-color);
+    }
+
+    .time {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+      list-style-type: none;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    li:before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .tip {
+      background-color: rgba(251, 211, 141, 0.2);
+      padding: 1.25rem;
+      border-left: 4px solid var(--warning);
+      margin-top: 2rem;
+      border-radius: 0 8px 8px 0;
+      animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(237, 137, 54, 0.2); }
+      50% { box-shadow: 0 0 0 10px rgba(237, 137, 54, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(237, 137, 54, 0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      header {
+        padding: 1.5rem 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .session {
+        padding: 1rem;
+      }
+    }
+
+    /* Animation for section headers */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 0.5in;
+      }
+
+      .session {
+        break-inside: avoid;
+        margin-bottom: 0.5in;
+      }
+
+      .tip, footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MCS-203 - 12 Hour Study Plan</h1>
+    <p>Master all 6 questions with a focused, brain-friendly strategy</p>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2><i class="fas fa-sun"></i> Morning Session (4 Hours)</h2>
+
+      <div class="session">
+        <p class="time"><i class="far fa-clock"></i> 7:00 AM – 8:00 AM</p>
+        <strong>Process Scheduling Algorithms</strong>
+        <ul>
+          <li>Study FCFS, SJF, Priority, Round Robin</li>
+          <li>Draw Gantt charts, calculate times</li>
+          <li>Solve manually with different scenarios</li>
+        </ul>
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="far fa-clock"></i> 8:00 AM – 9:00 AM</p>
+        <strong>Page Replacement Algorithms</strong>
+        <ul>
+          <li>Practice FIFO, LRU, Optimal methods</li>
+          <li>Draw page tables, count faults</li>
+          <li>Compare algorithm performance</li>
+        </ul>
+      </div>
+
+      <div class="session break">
+        <p class="time"><i class="fas fa-coffee"></i> 9:00 AM – 9:15 AM</p>
+        <strong>Break</strong> – Hydrate, stretch, relax your eyes
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="far fa-clock"></i> 9:15 AM – 10:30 AM</p>
+        <strong>Disk Scheduling Algorithms</strong>
+        <ul>
+          <li>Master FCFS, SSTF, SCAN, LOOK</li>
+          <li>Simulate head movements on paper</li>
+          <li>Calculate total seek times</li>
+        </ul>
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="fas fa-redo"></i> 10:30 AM – 11:00 AM</p>
+        <strong>Quick Revision</strong>
+        <ul>
+          <li>Review key formulas and concepts</li>
+          <li>Summarize each algorithm's pros/cons</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2><i class="fas fa-sun"></i> Afternoon Session (4 Hours)</h2>
+
+      <div class="session">
+        <p class="time"><i class="far fa-clock"></i> 11:00 AM – 12:30 PM</p>
+        <strong>Banker's Algorithm</strong>
+        <ul>
+          <li>Understand need matrix calculation</li>
+          <li>Practice finding safe sequences</li>
+          <li>Trace through example scenarios</li>
+        </ul>
+      </div>
+
+      <div class="session break">
+        <p class="time"><i class="fas fa-utensils"></i> 12:30 PM – 1:30 PM</p>
+        <strong>Lunch Break</strong> – Nourishing meal, short walk
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="far fa-clock"></i> 1:30 PM – 3:00 PM</p>
+        <strong>Windows 11 OS</strong>
+        <ul>
+          <li>Study process, memory, file management</li>
+          <li>Note key components: NTFS, security features</li>
+          <li>Compare with traditional OS concepts</li>
+        </ul>
+      </div>
+
+      <div class="session break">
+        <p class="time"><i class="fas fa-walking"></i> 3:00 PM – 3:15 PM</p>
+        <strong>Break</strong> – Eye exercises, fresh air
+      </div>
+    </section>
+
+    <section>
+      <h2><i class="fas fa-moon"></i> Evening Session (4 Hours)</h2>
+
+      <div class="session">
+        <p class="time"><i class="far fa-clock"></i> 3:15 PM – 4:30 PM</p>
+        <strong>LuneOS Study</strong>
+        <ul>
+          <li>Review features and architecture</li>
+          <li>Compare with Windows 11 management</li>
+          <li>Note Linux kernel advantages</li>
+        </ul>
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="fas fa-pen-fancy"></i> 4:30 PM – 5:30 PM</p>
+        <strong>Practice Problems</strong>
+        <ul>
+          <li>Redo scheduling & page replacement</li>
+          <li>Time yourself for exam conditions</li>
+        </ul>
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="fas fa-book"></i> 5:30 PM – 6:00 PM</p>
+        <strong>Final Revision</strong>
+        <ul>
+          <li>Explain Banker's Algorithm aloud</li>
+          <li>Quick scan through all notes</li>
+          <li>Highlight weak areas</li>
+        </ul>
+      </div>
+
+      <div class="session">
+        <p class="time"><i class="fas fa-clipboard-check"></i> 6:00 PM – 7:00 PM</p>
+        <strong>Mock Exam</strong>
+        <ul>
+          <li>Write 2 full answers in 30 mins each</li>
+          
+          <li>Focus on structure and clarity</li>
+          <li>Review against model answers</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="tip">
+      <h3><i class="fas fa-lightbulb"></i> Tips for Success:</h3>
+      <ul>
+        <li>Use active recall after every topic (cover and recite)</li>
+        <li>Draw diagrams like Gantt charts and page tables</li>
+        <li>Prioritize your weak areas in final revision</li>
+        <li>Follow the 50/10 rule - 50 mins study, 10 mins break</li>
+        <li>Ensure good sleep before exam day</li>
+        <li>Use blue light filters in evening sessions</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 MCS-203 Study Planner | robiii🥰💙
+  </footer>
+
+  <script>
+    // Simple animation trigger for sections as they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transition = 'opacity 0.5s ease-out';
+        observer.observe(section);
+      });
+
+      // Add prefers-reduced-motion check
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (prefersReducedMotion) {
+        document.querySelectorAll('*').forEach(el => {
+          el.style.animation = 'none';
+          el.style.transition = 'none';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
